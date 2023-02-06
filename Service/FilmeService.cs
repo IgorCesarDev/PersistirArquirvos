@@ -44,7 +44,6 @@ namespace PersistirArquirvos.Service
                         generoAtual.Filmes.Add(filmeAtual);
                         _context.Generos.Add(generoAtual);
                     }
-                    _context.Filmes.Add(filmeAtual);
                     novosFilmes.Add(filmeAtual);
                 }
             });
