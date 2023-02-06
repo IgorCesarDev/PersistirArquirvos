@@ -1,26 +1,35 @@
 ﻿using PersistirArquirvos.Data;
 using PersistirArquirvos.Models;
+using PersistirArquirvos.Service;
 using System;
+using System.Collections.Concurrent;
 
 class Program
 {
     static void Main(string[] args)
     {
-        var path = @"arquivo_caminho";
+        var path = @"C:\Users\Igor\source\repos\PersistirArquirvos - Copia\data.tsv";
         var lines = File.ReadAllLines(path).Skip(1);
-        foreach (var line in lines)
+        try
         {
-            using (var _context = new AppDbContext())
+            ValidadorService validadorService = new ValidadorService();
+            validadorService.ValidarArquivos(lines);
+        }
+        catch(AggregateException ex)
+        {
+            Console.WriteLine("Erro ao validar arquivo: "+ ex.Message);
+        }
+        try
+        {
+            using (var context = new AppDbContext())
             {
-                var filme = new Filme(line);
-                var genero = new Genero(line);
-                filme.Generos.Add(genero);
-                genero.Filmes.Add(filme);
-                _context.Filmes.Add(filme);
-                _context.Generos.Add(genero);
-                _context.SaveChanges();
+                FilmeService filmeService = new FilmeService(context);
+                filmeService.AdicionarFilmes(lines);
             }
         }
-
+        catch (Exception ex)
+        {
+            Console.WriteLine("Erro" + ex.Message);
+        }
     }
 }

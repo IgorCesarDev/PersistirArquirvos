@@ -25,8 +25,7 @@ namespace PersistirArquirvos.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             const string connectionString = "Server=localhost;database=userdb;user id=root; password=root;";
-            optionsBuilder.UseMySQL(connectionString, p => p.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)).EnableSensitiveDataLogging()
-                .LogTo(Console.WriteLine, LogLevel.Information);
+            optionsBuilder.UseMySQL(connectionString);
         }
     }
 }
