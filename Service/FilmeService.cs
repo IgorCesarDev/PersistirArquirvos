@@ -42,9 +42,9 @@ namespace PersistirArquirvos.Service
                         _context.Generos.Add(generoAtual);
                     }
                     _context.Filmes.Add(filmeAtual);
-                    _context.SaveChanges();
                 }
             }
+            _context.SaveChanges();
         }
     }
 }
