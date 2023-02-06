@@ -36,13 +36,11 @@ namespace PersistirArquirvos.Service
                     if (generosExistentes.TryGetValue(generoAtual.Nome, out Genero generoExistente))
                     {
                         filmeAtual.Generos.Add(generoExistente);
-                        generoExistente.Filmes.Add(filmeAtual);
                     }
                     else
                     {
-                        filmeAtual.Generos.Add(generoAtual);
-                        generoAtual.Filmes.Add(filmeAtual);
                         _context.Generos.Add(generoAtual);
+                        filmeAtual.Generos.Add(generoAtual);
                     }
                     novosFilmes.Add(filmeAtual);
                 }
