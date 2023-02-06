@@ -43,6 +43,7 @@ namespace PersistirArquirvos.Service
                         filmeAtual.Generos.Add(generoAtual);
                     }
                     novosFilmes.Add(filmeAtual);
+                    Console.WriteLine("teeste");
                 }
             });
             await _context.AddRangeAsync(novosFilmes);
