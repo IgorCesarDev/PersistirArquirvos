@@ -24,6 +24,7 @@ namespace PersistirArquirvos.Service
 
             var novosFilmes = new ConcurrentBag<Filme>();
             var novosGeneros = new ConcurrentBag<Genero>();
+
             Parallel.ForEach(lines, line =>
             {
                 Filme filmeAtual = new Filme(line);
