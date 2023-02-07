@@ -23,13 +23,11 @@ namespace PersistirArquirvos.Service
             var generosExistentes = await _context.Generos.ToDictionaryAsync(g => g.Nome);
 
             var novosFilmes = new ConcurrentBag<Filme>();
-
+            var novosGeneros = new ConcurrentBag<Genero>();
             Parallel.ForEach(lines, line =>
             {
                 Filme filmeAtual = new Filme(line);
                 Genero generoAtual = new Genero(line);
-
-                var novosFilmes = new ConcurrentBag<Filme>();
 
                 if (!filmesExistentes.ContainsKey(filmeAtual.Titulo))
                 {
@@ -39,13 +37,14 @@ namespace PersistirArquirvos.Service
                     }
                     else
                     {
-                        _context.Generos.Add(generoAtual);
+                        novosGeneros.Add(generoAtual);
                         filmeAtual.Generos.Add(generoAtual);
                     }
                     novosFilmes.Add(filmeAtual);
                 }
             });
             await _context.AddRangeAsync(novosFilmes);
+            await _context.AddRangeAsync(novosGeneros);
             await _context.SaveChangesAsync();
         }
     }
