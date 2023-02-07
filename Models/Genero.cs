@@ -24,7 +24,6 @@ namespace PersistirArquirvos.Models
             this.Id = columnsId;
             this.Nome = columns[8].Replace(",", "/");
         }
-
         private int BuscarId(string colunaId)
         {
             Match resultado = Regex.Match(colunaId, @"[0123456789]{7}");

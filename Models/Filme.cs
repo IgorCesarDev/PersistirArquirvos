@@ -28,7 +28,6 @@ namespace PersistirArquirvos.Models
             this.SubTitulo = columns[3];
             this.FaixaEtaria = SorteiaData();
         }
-
         private int SorteiaData()
         {
             Random random = new Random();
@@ -38,7 +37,6 @@ namespace PersistirArquirvos.Models
             if (numAletorio == 3) { return 18; }
             return 999;
         }
-
         public static int BuscarId(string colunaId)
         {
             Match resultado = Regex.Match(colunaId, @"[0123456789]{7}");
