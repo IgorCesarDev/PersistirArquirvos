@@ -23,12 +23,12 @@ namespace PersistirArquirvos.Service
                     var columns = line.Split('\t');
                     if (columns.Length != 9)
                     {
-                        exceptions.Add(new Exception("Formato de arquivo invalido: na vdd aq" + line));
+                        exceptions.Add(new Exception("Formato de arquivo invalido: " + line));
                     }
                     var titulo = columns[2].Trim();
                     if (string.IsNullOrWhiteSpace(titulo))
                     {
-                        exceptions.Add(new Exception("Formato de titulo invalido: errro aqui" + titulo));
+                        exceptions.Add(new Exception("Formato de titulo invalido: " + titulo));
                     }
                 }
                 catch (Exception ex)
